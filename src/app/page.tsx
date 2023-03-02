@@ -1,79 +1,40 @@
-import { stripe } from "@/lib/stripe";
-import { GetStaticProps } from "next";
-import Stripe from "stripe";
+"use client";
+import { HomeContainer, ProductContainer } from "@/styles/pages/home";
+import Image from "next/image";
+import { Product } from "./api/products/route";
+import { use } from "react";
 
-interface HomeProps {
-	products: {
-		id: string;
-		name: string;
-		imageUrl: string;
-		price: string;
-	}[]
-} 
- 
-export default async function Home(/*{ products }: HomeProps*/) {
-	/*const response = await stripe.products.list({
-		expand: ["data.default_price"],
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+
+
+export default function Home() {
+	const products: Product[] = use(fetch(`${process.env.NEXT_URL}/api/products`)
+		.then(res => res.json())
+		.then(json => json.products));
+
+	const [sliderRef] = useKeenSlider({
+		slides: {
+			perView: 3,
+			spacing: 48,
+		}
 	});
-
-	const products: HomeProps = response.data.map(product => {
-		const price = product.default_price as Stripe.Price;
-
-		return {
-			id: product.id,
-			name: product.name,
-			imageUrl: product.images[0],      
-			price: new Intl.NumberFormat("pt-BR", {
-				style: "currency",
-				currency: "BRL",
-			}).format(price.unit_amount / 100),
-		};
-	});*/
-
-	//console.log(products);
-
+	
 	return (
 		<>
-			<h1>Hello world</h1>
-			<ul>
-				{/*products.map((product) => {
+			<HomeContainer ref={sliderRef} className="keen-slider">
+				{products.map((product) => {
 					return (
-						<li key={product.id}>{product.name}</li>
+						<ProductContainer key={product.id} href={`/product/${product.id}`}  className="keen-slider__slide" prefetch={false}>
+							<Image src={product.imageUrl} width={520} height={480} alt="" />
+							<footer>
+								<strong>{product.name}</strong>
+								<span>{product.price}</span>
+							</footer>
+						</ProductContainer>
 					);
-				})*/}
-			</ul>
+				})}
+			</HomeContainer>
 		</>
 	);
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-//export async function getStaticProps(context) {
-	console.log(">>>>>>> teste <<<<<<<<<<<<<");
-
-	const response = await stripe.products.list({
-		expand: ["data.default_price"]
-	});
-
-	const products = response.data.map(product => {
-		const price = product.default_price as Stripe.Price;
-
-		return {
-			id: product.id,
-			name: product.name,
-			imageUrl: product.images[0],      
-			price: new Intl.NumberFormat("pt-BR", {
-				style: "currency",
-				currency: "BRL",
-			}).format(price.unit_amount / 100),
-		};
-	});
-
-	console.log(products);
-
-	return {
-		props: {
-			products: products,
-		},
-		revalidate: 60 * 60 * 2, // a cada 2 horas gera uma nova pagina no server SSG
-	};
-};
