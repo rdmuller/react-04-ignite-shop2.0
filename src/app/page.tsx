@@ -2,10 +2,10 @@
 import { HomeContainer, ProductContainer } from "@/styles/pages/home";
 import Image from "next/image";
 import { Product } from "./api/products/route";
-import { use } from "react";
 
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import { use } from "react";
 
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
 	return (
 		<>
 			<HomeContainer ref={sliderRef} className="keen-slider">
-				{products.map((product) => {
+				{products.map(product => {
 					return (
 						<ProductContainer key={product.id} href={`/product/${product.id}`}  className="keen-slider__slide" prefetch={false}>
 							<Image src={product.imageUrl} width={520} height={480} alt="" />
