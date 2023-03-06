@@ -2,8 +2,8 @@
 import { HomeContainer, ProductContainer } from "@/styles/pages/home";
 import Image from "next/image";
 import { Product } from "./api/products/route";
-//import { useKeenSlider } from "keen-slider/react";
-//import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 import { use } from "react";
 
 async function getData() {
@@ -19,21 +19,24 @@ const fetchData = getData();
 export default function Home() {
 	const products = use(fetchData);
 
-	/*const [sliderRef] = useKeenSlider({
+	if (!products) {
+		return ( <></> );
+	}
+	const [sliderRef] = useKeenSlider({
 		slides: {
 			perView: 3,
 			spacing: 48,
 		}
-	});*/
+	});
 	//https://github.com/maxmarinich/react-alice-carousel
-	//<HomeContainer ref={sliderRef} className="keen-slider">
-	//<ProductContainer href={`/product/${product.id}`} key={product.id} className="keen-slider__slide" prefetch={false}>
+	//
+	//
 	return (
 		<>
-			<HomeContainer>
+			<HomeContainer ref={sliderRef} className="keen-slider">
 				{products.map((product) => {
 					return (
-						<ProductContainer href={`/product/${product.id}`} key={product.id} prefetch={false}>
+						<ProductContainer href={`/product/${product.id}`} key={product.id} className="keen-slider__slide" prefetch={false}>
 							<Image src={product.imageUrl} width={520} height={480} alt="" />
 							<footer>
 								<strong>{product.name}</strong>
