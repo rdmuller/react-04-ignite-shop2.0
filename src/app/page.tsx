@@ -1,10 +1,11 @@
 "use client";
-import { HomeContainer, ProductContainer } from "@/styles/pages/home";
+import { ButtonNext, ButtonPrevious, HomeContainer, ProductContainer } from "@/styles/pages/home";
 import Image from "next/image";
 import { Product } from "./api/products/route";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { use } from "react";
+import { CaretLeft, CaretRight, Handbag } from "@phosphor-icons/react";
 
 async function getData() {
 	//const products: Product[] = await fetch(`${process.env.NEXT_URL}/api/products`)
@@ -19,28 +20,40 @@ const fetchData = getData();
 export default function Home() {
 	const products = use(fetchData);
 
-	if (!products) {
-		return ( <></> );
-	}
-	const [sliderRef] = useKeenSlider({
-		slides: {
-			perView: 3,
-			spacing: 48,
-		}
+	const [ref, slider] = useKeenSlider({
+		mode: "free",
+		slides: { origin: "center", perView: 2.5, spacing: 48 },
 	});
-	//https://github.com/maxmarinich/react-alice-carousel
-	//
-	//
+
+	function handleNextPage() {
+		slider.current?.next();
+	}
+	
+	function handlePreviousPage() {
+		slider.current?.prev();
+	}
+
 	return (
 		<>
-			<HomeContainer ref={sliderRef} className="keen-slider">
+			<HomeContainer ref={ref} className="keen-slider">
+				<ButtonPrevious onClick={handlePreviousPage}>
+					<CaretLeft size={48} />
+				</ButtonPrevious>
+				<ButtonNext onClick={handleNextPage}>
+					<CaretRight size={48} />
+				</ButtonNext>
 				{products.map((product) => {
 					return (
 						<ProductContainer href={`/product/${product.id}`} key={product.id} className="keen-slider__slide" prefetch={false}>
 							<Image src={product.imageUrl} width={520} height={480} alt="" />
 							<footer>
-								<strong>{product.name}</strong>
-								<span>{product.price}</span>
+								<div>
+									<strong>{product.name}</strong>
+									<span>{product.price}</span>
+								</div>
+								<button>
+									<Handbag size={32} weight="bold" />
+								</button>
 							</footer>
 						</ProductContainer>  
 					);

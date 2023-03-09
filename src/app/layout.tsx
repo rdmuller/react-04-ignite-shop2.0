@@ -1,10 +1,9 @@
 import { globalStyles } from "@/styles/global";
-import { Container, Header } from "@/styles/pages/layout";
-import Image from "next/image";
-import logoImg from "../assets/logo.svg";
+import { Container } from "@/styles/pages/layout";
 import { ReactNode } from "react";
 import StyledJsxRegistry from "./registry";
 import { getCssText } from "@/styles";
+import Header from "@/components/Header";
 
 globalStyles();
 
@@ -17,9 +16,7 @@ export default function RootLayout({ children, }: { children: ReactNode}) {
 			<body>
 				<StyledJsxRegistry>
 					<Container>
-						<Header>
-							<Image src={logoImg} alt="" />        
-						</Header>
+						<Header />
 				
 						{children}
 					</Container>
