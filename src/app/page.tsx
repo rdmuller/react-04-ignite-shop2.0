@@ -1,5 +1,5 @@
 "use client";
-import { ButtonNext, ButtonPrevious, HomeContainer, ProductContainer } from "@/styles/pages/home";
+import { ButtonNextContainer, ButtonPreviousContainer, HomeContainer, ProductContainer } from "@/styles/pages/home";
 import Image from "next/image";
 import { Product } from "./api/products/route";
 import { useKeenSlider } from "keen-slider/react";
@@ -36,12 +36,9 @@ export default function Home() {
 	return (
 		<>
 			<HomeContainer ref={ref} className="keen-slider">
-				<ButtonPrevious onClick={handlePreviousPage}>
+				<ButtonPreviousContainer onClick={handlePreviousPage}>
 					<CaretLeft size={48} />
-				</ButtonPrevious>
-				<ButtonNext onClick={handleNextPage}>
-					<CaretRight size={48} />
-				</ButtonNext>
+				</ButtonPreviousContainer>
 				{products.map((product) => {
 					return (
 						<ProductContainer href={`/product/${product.id}`} key={product.id} className="keen-slider__slide" prefetch={false}>
@@ -58,6 +55,9 @@ export default function Home() {
 						</ProductContainer>  
 					);
 				})}
+				<ButtonNextContainer onClick={handleNextPage}>
+					<CaretRight size={48} />
+				</ButtonNextContainer>
 			</HomeContainer>
 		</>
 	);
