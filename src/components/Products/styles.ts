@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { styled } from "@/styles";
 import Link from "next/link";
 
 export const HomeContainer = styled("main", {
