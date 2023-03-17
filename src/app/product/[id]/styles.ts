@@ -30,7 +30,7 @@ export const ImageContainerLoading = styled("div", {
 	height: "calc(656px - 0.5rem)",
 	backgroundColor: "$gray800",
 	borderRadius: 8,
-	display: "flex",
+	display: "block",
 });
 
 export const ProductDetails = styled("div", {

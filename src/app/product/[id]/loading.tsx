@@ -6,7 +6,7 @@ export default function Loading() {
 			<ImageContainerLoading />
 
 			<ProductDetails>
-				<h1></h1>
+				<h1>Carregando...</h1>
 				<span></span>
 				<p></p>
 				<button disabled>Comprar agora</button>
