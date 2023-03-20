@@ -7,9 +7,6 @@ export default function Loading() {
 
 			<ProductDetails>
 				<h1>Carregando...</h1>
-				<span></span>
-				<p></p>
-				<button disabled>Comprar agora</button>
 			</ProductDetails>
 		</ProductContainer>
 	);

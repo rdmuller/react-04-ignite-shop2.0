@@ -32,7 +32,7 @@ export default function BuyProduct({ product }: BuyProductProps) {
 				<h1>{product.name}</h1>
 				<span>{product.price}</span>
 				<p>{product.description}</p>
-				<button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>Comprar agora</button>
+				<button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>Colocar na sacola</button>
 			</ProductDetails>
 		</ProductContainer>
 	);
