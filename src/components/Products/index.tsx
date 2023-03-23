@@ -1,4 +1,3 @@
-"use client";
 import { ButtonNextContainer, ButtonPreviousContainer, HomeContainer, ProductContainer } from "@/components/Products/styles";
 import Image from "next/image";
 import { Product } from "@/app/api/products/route";
@@ -10,7 +9,7 @@ interface ProductsProps {
     products: Product[]
 }
 
-export default function Products({ products }: ProductsProps) {
+export const Products = ({ products }: ProductsProps) => {
 	const [ref, slider] = useKeenSlider({
 		mode: "free",
 		slides: { origin: "center", perView: 2.5, spacing: 48 },
@@ -48,6 +47,6 @@ export default function Products({ products }: ProductsProps) {
 			<ButtonNextContainer onClick={handleNextPage}>
 				<CaretRight size={48} />
 			</ButtonNextContainer>
-		</HomeContainer>
+		</HomeContainer>		
 	);
-}
+};

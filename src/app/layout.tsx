@@ -3,7 +3,6 @@ import { Container } from "@/styles/pages/layout";
 import { ReactNode } from "react";
 import StyledJsxRegistry from "./registry";
 import { getCssText } from "@/styles";
-import Header from "@/components/Header";
 
 export default function RootLayout({ children, }: { children: ReactNode}) {
 	globalStyles();
@@ -16,7 +15,6 @@ export default function RootLayout({ children, }: { children: ReactNode}) {
 			<body>
 				<StyledJsxRegistry>
 					<Container>
-						<Header />				
 						{children}
 					</Container>
 				</StyledJsxRegistry>

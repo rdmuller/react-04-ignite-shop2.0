@@ -42,6 +42,8 @@ export const ProductContainer = styled(Link, {
 
 	img: {
 		objectFit: "cover",
+		width: "auto",
+		height: "auto",
 	},
 
 	footer: {
