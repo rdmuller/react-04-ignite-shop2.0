@@ -1,23 +1,21 @@
-import { globalStyles } from "@/styles/global";
-import { Container } from "@/styles/pages/layout";
 import { ReactNode } from "react";
-import StyledJsxRegistry from "./registry";
-import { getCssText } from "@/styles";
+import "@/styles/global.css";
+import * as styles from "@/styles/pages/layout.css";
+import { Header } from "@/components/Header";
+//import "@/styles/global.css";
+//import "@/styles/theme.css";
 
 export default function RootLayout({ children, }: { children: ReactNode}) {
-	globalStyles();
 
 	return (
 		<html lang="pt-BR">
 			<head> 
-				<style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
 			</head>
 			<body>
-				<StyledJsxRegistry>
-					<Container>
-						{children}
-					</Container>
-				</StyledJsxRegistry>
+				<div className={styles.container}>
+					<Header />
+					{children}
+				</div>
 			</body>
 		</html>
 	);

@@ -1,13 +1,13 @@
-import { styled } from "@/styles";
+import { style } from "@vanilla-extract/css";
 
-export const HeaderContainer = styled("header", {
+export const HeaderContainer = style({
 	display: "flex",
 	flexDirection: "row",
 	justifyContent: "space-between",
 	padding: "2rem 0",
 	width: "100%",
 	maxWidth: 1180,
-	margin: "0 auto",
+	margin: "0 auto"/*,
 
 	button: {
 		padding: "0.75rem",
@@ -16,5 +16,5 @@ export const HeaderContainer = styled("header", {
 		backgroundColor: "$gray800",
 		borderStyle: "none",
 		color: "$gray300"
-	},
+	},*/
 });

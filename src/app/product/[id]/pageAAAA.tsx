@@ -1,6 +1,6 @@
 import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
-import BuyProduct, { BuyProductProps } from "./BuyProduct";
+import { BuyProduct, BuyProductProps } from "./BuyProduct";
 
 interface ProductParams {
 	params: {
@@ -21,20 +21,19 @@ export default async function Product({ params }: ProductParams) {
 		product: {
 			id: product.id,
 			name: product.name,
-			imageUrl: product.images[0],
-			price: Intl.NumberFormat("pt-BR", {
+			image: product.images[0],
+			currency: "BRL",
+			price: price.unit_amount!,
+			price_formatted: Intl.NumberFormat("pt-BR", {
 				currency: "BRL",
 				style: "currency",
 			}).format((price.unit_amount || 0) / 100),
 			description: product.description || "",
 			defaultPriceId: price.id,
-
 		}
 	};
 
 	return (
-		<>
-			<BuyProduct product={productProps.product} />
-		</>
+		<BuyProduct product={productProps.product} />
 	);
 }

@@ -2,7 +2,6 @@
 
 import { Product } from "./api/products/route";
 import { Products } from "@/components/Products";
-import { Header } from "@/components/Header";
 import { use, useEffect, useState } from "react";
 import { Cart } from "@/components/Cart";
 
@@ -28,10 +27,10 @@ export default function Home() {
 
 	if(initialRenderComplete) {
 		return (
-			<Cart>
-				<Header />
-				<Products products={products} />
-			</Cart>			
+			//<Cart>
+			<h1>componente</h1>
+		//	<Products products={products} />
+			//</Cart>
 		);} 
 	else {
 		return null;
