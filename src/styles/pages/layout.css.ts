@@ -5,6 +5,5 @@ export const container = style({
 	flexDirection: "column",
 	alignItems: "flex-start",
 	justifyContent: "center",
-	minHeight: "100vh",
-	backgroundColor: "blue"
+	minHeight: "100vh"
 });

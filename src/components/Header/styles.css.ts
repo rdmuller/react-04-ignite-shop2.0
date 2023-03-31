@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "@/styles/theme.css";
 
 export const HeaderContainer = style({
 	display: "flex",
@@ -7,14 +8,14 @@ export const HeaderContainer = style({
 	padding: "2rem 0",
 	width: "100%",
 	maxWidth: 1180,
-	margin: "0 auto"/*,
+	margin: "0 auto",
+});
 
-	button: {
-		padding: "0.75rem",
-		cursor: "pointer",
-		borderRadius: 6,
-		backgroundColor: "$gray800",
-		borderStyle: "none",
-		color: "$gray300"
-	},*/
+export const handbag = style({
+	padding: "0.75rem",
+	cursor: "pointer",
+	borderRadius: 6,
+	backgroundColor: vars.colors.gray800,
+	borderStyle: "none",
+	color: vars.colors.gray300
 });

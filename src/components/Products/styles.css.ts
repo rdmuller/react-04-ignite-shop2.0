@@ -1,7 +1,7 @@
-import { styled } from "@/styles";
-import Link from "next/link";
+import { style } from "@vanilla-extract/css";
+import { vars } from "@/styles/theme.css";
 
-export const HomeContainer = styled("main", {
+export const homeContainer = style({
 	display: "flex",
 	// gap: "3rem", // o slider não contabiliza esse tamanho
 	width: "100%",
@@ -10,7 +10,8 @@ export const HomeContainer = styled("main", {
 	minHeight: 656,
 });
 
-export const ButtonNextContainer = styled("div", {	
+
+export const buttonNextContainer = style({	
 	color: "$gray100",
 	position: "absolute",
 	zIndex: 1,
@@ -19,7 +20,7 @@ export const ButtonNextContainer = styled("div", {
 	left: "calc(100% - 48px - 16px)",
 });
 
-export const ButtonPreviousContainer = styled("div", {
+export const buttonPreviousContainer = style({
 	color: "$gray100",
 	position: "absolute",
 	zIndex: 1,
@@ -27,6 +28,22 @@ export const ButtonPreviousContainer = styled("div", {
 	top: "calc(50% - (48px) / 2)",
 	left: "16px",
 });
+
+export const productContainer = style({
+	background: "linear-gradient(180deg, #1ea483 0%, #7465d4 100%)",
+	borderRadius: 8,
+	cursor: "pointer",
+	position: "relative",
+	//overflow: "hidden",
+	overflow: "auto",
+
+	display: "flex",
+	alignItems: "center",
+	justifyContent: "center",
+});
+
+/*
+import Link from "next/link";
 
 export const ProductContainer = styled(Link, {
 	background: "linear-gradient(180deg, #1ea483 0%, #7465d4 100%)",
@@ -147,4 +164,4 @@ export const ProductContainerLoading = styled("div", {
 			borderRadius: 8,
 		},
 	},
-});
+});*/

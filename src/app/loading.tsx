@@ -1,4 +1,4 @@
-import LoadingProducts from "@/components/Products/Loading";
+import LoadingProducts from "@/components/Products/Loading111";
 
 export default function Loading() {
 	return (/*

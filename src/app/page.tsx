@@ -27,11 +27,11 @@ export default function Home() {
 
 	if(initialRenderComplete) {
 		return (
-			//<Cart>
-			<h1>componente</h1>
-		//	<Products products={products} />
-			//</Cart>
-		);} 
+			<Cart>
+				<Products products={products} />
+			</Cart>
+		);
+	} 
 	else {
 		return null;
 	}

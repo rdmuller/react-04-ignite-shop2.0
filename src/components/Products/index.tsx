@@ -4,6 +4,8 @@ import { Product } from "@/app/api/products/route";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { CaretLeft, CaretRight, Handbag } from "@phosphor-icons/react";
+import * as styles from "./styles.css";
+import Link from "next/link";
 
 interface ProductsProps {
     products: Product[]
@@ -24,29 +26,37 @@ export const Products = ({ products }: ProductsProps) => {
 	}
 
 	return (
-		<HomeContainer ref={ref} className="keen-slider">
-			<ButtonPreviousContainer onClick={handlePreviousPage}>
+		<main ref={ref} className={`keen-slider ${styles.homeContainer}`}>
+			<div className={styles.buttonPreviousContainer} onClick={handlePreviousPage}>
 				<CaretLeft size={48} />
-			</ButtonPreviousContainer>
+			</div>
+
 			{products.map((product) => {
 				return (
-					<ProductContainer href={`/product/${product.id}`} key={product.id} className="keen-slider__slide" prefetch={false}>
-						<Image src={product.imageUrl} width={520} height={480} alt="" />
-						<footer>
-							<div>
-								<strong>{product.name}</strong>
-								<span>{product.price}</span>
-							</div>
-							<button>
-								<Handbag size={32} weight="bold" />
-							</button>
-						</footer>
-					</ProductContainer>  
+					<Link href={`/product/${product.id}`} key={product.id} className={`keen-slider__slide ${styles.productContainer}`} prefetch={false}>
+						<strong>{product.name}</strong>
+					</Link>  
 				);
 			})}
-			<ButtonNextContainer onClick={handleNextPage}>
+
+			<div className={styles.buttonNextContainer} onClick={handleNextPage}>
 				<CaretRight size={48} />
-			</ButtonNextContainer>
-		</HomeContainer>		
+			</div>
+		</main>
 	);
 };
+
+/*
+		
+			<Image src={product.imageUrl} width={520} height={480} alt="" />
+			<footer>
+				<div>
+					<strong>{product.name}</strong>
+					<span>{product.price}</span>
+				</div>
+				<button>
+					<Handbag size={32} weight="bold" />
+				</button>
+			</footer>
+		
+*/
