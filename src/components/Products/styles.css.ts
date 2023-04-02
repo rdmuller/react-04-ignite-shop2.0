@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { vars } from "@/styles/theme.css";
 
 export const homeContainer = style({
@@ -12,7 +12,7 @@ export const homeContainer = style({
 
 
 export const buttonNextContainer = style({	
-	color: "$gray100",
+	color: vars.colors.gray100,
 	position: "absolute",
 	zIndex: 1,
 	cursor: "pointer",
@@ -21,7 +21,7 @@ export const buttonNextContainer = style({
 });
 
 export const buttonPreviousContainer = style({
-	color: "$gray100",
+	color: vars.colors.gray100,
 	position: "absolute",
 	zIndex: 1,
 	cursor: "pointer",
@@ -42,92 +42,70 @@ export const productContainer = style({
 	justifyContent: "center",
 });
 
-/*
-import Link from "next/link";
+globalStyle(`${productContainer} footer`, {
+	position: "absolute",
+	bottom: "0.25rem",
+	left: "0.25rem",
+	right: "0.25rem",
+	padding: "1.25rem",
 
-export const ProductContainer = styled(Link, {
-	background: "linear-gradient(180deg, #1ea483 0%, #7465d4 100%)",
 	borderRadius: 8,
-	cursor: "pointer",
-	position: "relative",
-	//overflow: "hidden",
-	overflow: "auto",
-
 	display: "flex",
+	justifyContent: "space-between",
 	alignItems: "center",
-	justifyContent: "center",
 
-	img: {
-		objectFit: "cover",
-		width: "auto",
-		height: "auto",
-	},
+	backgroundColor: "rgba(0, 0, 0, 0.6)",
 
-	footer: {
-		position: "absolute",
-		bottom: "0.25rem",
-		left: "0.25rem",
-		right: "0.25rem",
-		padding: "1.25rem",
-
-		borderRadius: 8,
-		display: "flex",
-		justifyContent: "space-between",
-		alignItems: "center",
-
-		backgroundColor: "rgba(0, 0, 0, 0.6)",
-
-		transform: "translateY(110%)",
-		opacity: 0,
-		transition: "all 0.2s ease-in-out",
-		overflow: "hidden",
-
-		button: {
-			padding: "0.75rem",
-			borderRadius: 6,
-			backgroundColor: "$green500",
-			cursor: "pointer",
-			borderStyle: "none",
-
-			svg: {
-				color: "white"
-			},
-
-			"&:hover": {
-				backgroundColor: "$green300",
-			}
-		},
-
-		div: {
-			display: "flex",
-			flexDirection: "column",
-			gap: "0.25rem"
-		},
-
-		strong: {
-			fontSize: "$lg",
-			color: "$gray100",
-			lineHeight: "1.6",
-		},
-
-		span: {
-			fontSize: "$xl",
-			fontWeight: "bold",
-			color: "$green300",
-			lineHeight: "1.4",
-		},
-	},
-
-
-	"&:hover": {
-		footer: {
-			transform: "translateY(0%)",
-			opacity: 1,
-		},
-	},
+	transform: "translateY(110%)",
+	opacity: 0,
+	transition: "all 0.2s ease-in-out",
+	overflow: "hidden",
 });
 
+globalStyle(`${productContainer}:hover footer`, {
+	transform: "translateY(0%)",
+	opacity: 1,
+});
 
+globalStyle(`${productContainer} img`, {
+	objectFit: "cover",
+	width: "auto",
+	height: "auto",
+});
+
+globalStyle(`${productContainer} footer button`, {
+	padding: "0.75rem",
+	borderRadius: 6,
+	backgroundColor: vars.colors.green500,
+	color: vars.colors.white,
+	cursor: "pointer",
+	borderStyle: "none",
+});
+
+globalStyle(`${productContainer} footer button:hover`, {
+	backgroundColor: vars.colors.green300,
+});
+
+globalStyle(`${productContainer} footer div`, {
+	display: "flex",
+	flexDirection: "column",
+	gap: "0.25rem"
+});
+
+globalStyle(`${productContainer} footer strong`, {
+	fontSize: vars.fontSizes.lg,
+	color: vars.colors.gray100,
+	lineHeight: "1.6",
+});
+
+globalStyle(`${productContainer} footer span`, {
+	fontSize: vars.fontSizes.xl,
+	fontWeight: "bold",
+	color: vars.colors.green300,
+	lineHeight: "1.4",
+});
+
+/*
 export const ProductContainerLoading = styled("div", {
 	borderRadius: 8,
 	//position: "relative",

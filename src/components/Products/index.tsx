@@ -1,4 +1,3 @@
-import { ButtonNextContainer, ButtonPreviousContainer, HomeContainer, ProductContainer } from "@/components/Products/styles";
 import Image from "next/image";
 import { Product } from "@/app/api/products/route";
 import { useKeenSlider } from "keen-slider/react";
@@ -34,7 +33,16 @@ export const Products = ({ products }: ProductsProps) => {
 			{products.map((product) => {
 				return (
 					<Link href={`/product/${product.id}`} key={product.id} className={`keen-slider__slide ${styles.productContainer}`} prefetch={false}>
-						<strong>{product.name}</strong>
+						<Image src={product.imageUrl} width={520} height={480} alt="" />
+						<footer>
+							<div>
+								<strong>{product.name}</strong>
+								<span>{product.price}</span>
+							</div>
+							<button>
+								<Handbag size={32} weight="bold" />
+							</button>
+						</footer>
 					</Link>  
 				);
 			})}
@@ -45,18 +53,3 @@ export const Products = ({ products }: ProductsProps) => {
 		</main>
 	);
 };
-
-/*
-		
-			<Image src={product.imageUrl} width={520} height={480} alt="" />
-			<footer>
-				<div>
-					<strong>{product.name}</strong>
-					<span>{product.price}</span>
-				</div>
-				<button>
-					<Handbag size={32} weight="bold" />
-				</button>
-			</footer>
-		
-*/
