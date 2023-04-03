@@ -105,8 +105,7 @@ globalStyle(`${productContainer} footer span`, {
 	lineHeight: "1.4",
 });
 
-/*
-export const ProductContainerLoading = styled("div", {
+export const productContainerLoading = style({
 	borderRadius: 8,
 	//position: "relative",
 
@@ -115,31 +114,31 @@ export const ProductContainerLoading = styled("div", {
 	gap: "1.5rem",
 	width: "696px",
 	height: "656px",
+});
 
-	main: {
-		backgroundColor: "$gray800",
-		flex: 1,
-	},
+globalStyle(`${productContainerLoading} main`, {
+	backgroundColor: vars.colors.gray800,
+	flex: 1,
+});
 
-	footer: {
-		display: "flex",
-		flexDirection: "row",
-		justifyContent: "space-between",
-		
-		strong: {
-			display: "block",
-			height: "2rem",
-			width: "20.625rem",
-			backgroundColor: "$gray800",
-			borderRadius: 8,
-		},
+globalStyle(`${productContainerLoading} footer`, {
+	display: "flex",
+	flexDirection: "row",
+	justifyContent: "space-between",
+});
 
-		span: {
-			display: "block",
-			height: "2rem",
-			width: "6.25rem",
-			backgroundColor: "$gray800",
-			borderRadius: 8,
-		},
-	},
-});*/
+globalStyle(`${productContainerLoading} footer strong`, {
+	display: "block",
+	height: "2rem",
+	width: "20.625rem",
+	backgroundColor: vars.colors.gray800,
+	borderRadius: 8,
+});
+
+globalStyle(`${productContainerLoading} footer span`, {
+	display: "block",
+	height: "2rem",
+	width: "6.25rem",
+	backgroundColor: vars.colors.gray800,
+	borderRadius: 8,
+});

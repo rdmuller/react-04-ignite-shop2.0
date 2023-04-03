@@ -1,7 +1,6 @@
-"use client";
-import { ButtonNextContainer, HomeContainer, ProductContainerLoading } from "../styles";
 import { CaretRight } from "@phosphor-icons/react";
 import { useKeenSlider } from "keen-slider/react";
+import * as styles from "../styles.css";
 import "keen-slider/keen-slider.min.css";
 
 export default function LoadingProducts() {
@@ -11,24 +10,24 @@ export default function LoadingProducts() {
 	});
 
 	return (
-		<HomeContainer ref={ref} className="keen-slider">
-			<ProductContainerLoading className="keen-slider__slide">
+		<main ref={ref} className={`keen-slider ${styles.homeContainer}`}>
+			<div className={`keen-slider__slide ${styles.productContainerLoading}`}>
 				<main></main>
 				<footer>
 					<strong></strong>
 					<span></span>
 				</footer>
-			</ProductContainerLoading>  
-			<ProductContainerLoading className="keen-slider__slide">
+			</div>  
+			<div className={`keen-slider__slide ${styles.productContainerLoading}`}>
 				<main></main>
 				<footer>
 					<strong></strong>
 					<span></span>
 				</footer>
-			</ProductContainerLoading>  
-			<ButtonNextContainer>
+			</div>  
+			<div className={styles.buttonNextContainer}>
 				<CaretRight size={48} />
-			</ButtonNextContainer>
-		</HomeContainer>
+			</div>
+		</main>
 	);
 }

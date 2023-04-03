@@ -1,9 +1,11 @@
-import LoadingProducts from "@/components/Products/Loading111";
+"use client";
+
+import LoadingProducts from "@/components/Products/Loading";
 
 export default function Loading() {
-	return (/*
+	return (
 		<>
 			<LoadingProducts />
 		</>
-	*/ null);
+	);
 }
