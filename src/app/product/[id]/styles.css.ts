@@ -1,6 +1,7 @@
-import { styled } from "@/styles";
+import { style, globalStyle } from "@vanilla-extract/css";
+import { vars } from "@/styles/theme.css";
 
-export const ProductContainer = styled("main", {
+export const productContainer = style({
 	display: "grid",
 	gridTemplateColumns: "1fr 1fr",
 	alignItems: "stretch",
@@ -9,7 +10,7 @@ export const ProductContainer = styled("main", {
 	margin: "0 auto",
 });
 
-export const ImageContainer = styled("div", {
+export const imageContainer = style({
 	width: "100%",
 	maxWidth: 576,
 	height: "calc(656px - 0.5rem)",
@@ -19,21 +20,22 @@ export const ImageContainer = styled("div", {
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
-
-	img: {
-		objectFit: "cover",
-	},
 });
 
-export const ImageContainerLoading = styled("div", {
+
+globalStyle(`${imageContainer} img`, {
+	objectFit: "cover",
+});
+
+export const imageContainerLoading = style({
 	width: 576,
 	height: "calc(656px - 0.5rem)",
-	backgroundColor: "$gray800",
+	backgroundColor: vars.colors.gray800,
 	borderRadius: 8,
 	display: "block",
 });
 
-export const ProductDetails = styled("div", {
+/*export const ProductDetails = styled("div", {
 	display: "flex",
 	flexDirection: "column",
 
@@ -75,4 +77,4 @@ export const ProductDetails = styled("div", {
 			backgroundColor: "$green300"
 		}
 	}
-});
+});*/

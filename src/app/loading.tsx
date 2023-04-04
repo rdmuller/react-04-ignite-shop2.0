@@ -1,8 +1,6 @@
-"use client";
-
 import LoadingProducts from "@/components/Products/Loading";
 
-export default function Loading() {
+export default async function Loading() {
 	return (
 		<>
 			<LoadingProducts />

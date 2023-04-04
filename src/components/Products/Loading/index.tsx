@@ -1,3 +1,5 @@
+"use client";
+
 import { CaretRight } from "@phosphor-icons/react";
 import { useKeenSlider } from "keen-slider/react";
 import * as styles from "../styles.css";

@@ -4,7 +4,7 @@ import { Cart } from "@/components/Cart";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useShoppingCart } from "use-shopping-cart";
-import { ImageContainer, ProductContainer, ProductDetails } from "./styles";
+import * as styles from "./styles.css";
 
 export interface BuyProductProps {
     product: {
@@ -19,7 +19,7 @@ export interface BuyProductProps {
     }
 }
 
-export const BuyProduct = ({ product }: BuyProductProps) => {
+export function BuyProduct ({ product }: BuyProductProps) {
 	const [initialRenderComplete, setInitialRenderComplete] = useState(false);
 	const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
 	//const { addItem } = useShoppingCart();
@@ -36,22 +36,42 @@ export const BuyProduct = ({ product }: BuyProductProps) => {
 	if(initialRenderComplete) {
 		return (
 			<Cart>
-				<ProductContainer>
-					<ImageContainer>
+				<main className={styles.productContainer}>
+					<div>
 						<Image src={product.image} width={520} height={480} alt="" />
-					</ImageContainer>
+					</div>
 
-					<ProductDetails>
+					<div>
 						<h1>{product.name}</h1>
 						<span>{product.price}</span>
 						<span>{product.price_formatted}</span>
 						<p>{product.description}</p>
 						<button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>Colocar na sacola</button>
-					</ProductDetails>
-				</ProductContainer>
+					</div>
+				</main>
 			</Cart>
-		); }
+		); 
+	}
 	else {
 		return null;
 	}
-};
+}
+
+/*
+
+<Cart>
+<main className={styles.productContainer}>
+	<div className={styles.imageContainer}>
+		<Image src={product.image} width={520} height={480} alt="" />
+	</div>
+
+	<div>
+		<h1>{product.name}</h1>
+		<span>{product.price}</span>
+		<span>{product.price_formatted}</span>
+		<p>{product.description}</p>
+		<button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>Colocar na sacola</button>
+	</div>
+</main>
+</Cart>
+*/
