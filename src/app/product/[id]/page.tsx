@@ -1,6 +1,6 @@
 import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
-import { BuyProduct, BuyProductProps } from "./BuyProduct";
+import { BuyProduct, BuyProductProps } from "@/components/BuyProduct";
 
 interface ProductParams {
 	params: {

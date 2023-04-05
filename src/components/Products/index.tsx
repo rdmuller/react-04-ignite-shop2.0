@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Product } from "@/app/api/products/route";
 import { useKeenSlider } from "keen-slider/react";
@@ -10,7 +12,7 @@ interface ProductsProps {
     products: Product[]
 }
 
-export const Products = ({ products }: ProductsProps) => {
+export function Products({ products }: ProductsProps)  {
 	const [ref, slider] = useKeenSlider({
 		mode: "free",
 		slides: { origin: "center", perView: 2.5, spacing: 48 },
@@ -52,4 +54,4 @@ export const Products = ({ products }: ProductsProps) => {
 			</div>
 		</main>
 	);
-};
+}

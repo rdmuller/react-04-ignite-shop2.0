@@ -37,11 +37,11 @@ export function BuyProduct ({ product }: BuyProductProps) {
 		return (
 			<Cart>
 				<main className={styles.productContainer}>
-					<div>
+					<div className={styles.imageContainer}>
 						<Image src={product.image} width={520} height={480} alt="" />
 					</div>
 
-					<div>
+					<div className={styles.productDetails}>
 						<h1>{product.name}</h1>
 						<span>{product.price}</span>
 						<span>{product.price_formatted}</span>
@@ -56,22 +56,3 @@ export function BuyProduct ({ product }: BuyProductProps) {
 		return null;
 	}
 }
-
-/*
-
-<Cart>
-<main className={styles.productContainer}>
-	<div className={styles.imageContainer}>
-		<Image src={product.image} width={520} height={480} alt="" />
-	</div>
-
-	<div>
-		<h1>{product.name}</h1>
-		<span>{product.price}</span>
-		<span>{product.price_formatted}</span>
-		<p>{product.description}</p>
-		<button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>Colocar na sacola</button>
-	</div>
-</main>
-</Cart>
-*/
