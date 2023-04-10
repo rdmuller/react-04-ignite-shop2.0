@@ -10,7 +10,6 @@ export const homeContainer = style({
 	minHeight: 656,
 });
 
-
 export const buttonNextContainer = style({	
 	color: vars.colors.gray100,
 	position: "absolute",

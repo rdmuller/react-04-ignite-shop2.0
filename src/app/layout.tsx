@@ -1,9 +1,7 @@
 import { ReactNode } from "react";
 import "@/styles/global.css";
 import * as styles from "@/styles/pages/layout.css";
-import { Header } from "@/components/Header";
-//import "@/styles/global.css";
-//import "@/styles/theme.css";
+import { Cart } from "@/components/Cart";
 
 export default function RootLayout({ children, }: { children: ReactNode}) {
 
@@ -13,8 +11,9 @@ export default function RootLayout({ children, }: { children: ReactNode}) {
 			</head>
 			<body>
 				<div className={styles.container}>
-					<Header />
-					{children}
+					<Cart>
+						{children}
+					</Cart>
 				</div>
 			</body>
 		</html>
