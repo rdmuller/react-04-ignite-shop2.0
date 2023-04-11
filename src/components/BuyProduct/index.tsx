@@ -43,7 +43,6 @@ export function BuyProduct ({ product }: BuyProductProps) {
 
 				<div className={styles.productDetails}>
 					<h1>{product.name}</h1>
-					<span>{product.price}</span>
 					<span>{product.price_formatted}</span>
 					<p>{product.description}</p>
 					<button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>Colocar na sacola</button>
