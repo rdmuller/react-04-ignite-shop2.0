@@ -27,7 +27,7 @@ export function ListCart() {
 					<p>Sem produtos</p>
 				)}
 			</div>
-			<div>
+			<div className={styles.footerContainer}>
 				<div>
 					<span>Quantidade</span>
 					<span>{cartCount} itens</span>
@@ -37,6 +37,8 @@ export function ListCart() {
 					<span>Valor total</span>
 					<span>{formattedTotalPrice}</span>
 				</div>
+
+				<button className={styles.finishButton}>Finalizar compra</button>
 			</div>
 		</div>
 	);
@@ -59,10 +61,10 @@ function ProductCart({ product }: ProductCartProps) {
 			</div>
 			<div className={styles.productDetailsContainer}>
 				<div>
-					<span>{product.name}</span>
+					<p>{product.name}</p>
 					<span>{product.formattedValue}</span>
 				</div>
-				<button>Remover</button>
+				<button className={styles.buttonRemove}>Remover</button>
 			</div>
 		</div>
 	);

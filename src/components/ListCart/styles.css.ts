@@ -6,6 +6,9 @@ export const closeButton = style({
 	color: vars.colors.gray300,
 	borderStyle: "none",
 	cursor: "pointer",
+	position: "absolute",
+	top: "1.25rem",
+	right: "1.25rem",
 });
 
 const containerIn = keyframes({
@@ -43,11 +46,14 @@ globalStyle(`${listCartContainer} h1`, {
 	color: vars.colors.gray050,
 	fontSize: vars.fontSizes.lg, 
 	fontWeight: 700,
+	marginTop: "1.5rem",
+	marginBottom: "2rem",
 });
 
 export const productContainer = style({
 	display: "flex",
 	flexDirection: "row",
+	gap: "1.25rem",
 	marginBottom: "1.5rem",
 });
 
@@ -60,6 +66,36 @@ export const productDetailsContainer = style({
 globalStyle(`${productDetailsContainer} div`, {
 	display: "flex", 
 	flexDirection: "column"
+});
+
+globalStyle(`${productDetailsContainer} p`, {
+	fontSize: vars.fontSizes.md,
+	lineHeight: 1.6,
+	color: vars.colors.gray100,
+	fontWeight: 400,
+});
+
+globalStyle(`${productDetailsContainer} span`, {
+	fontSize: vars.fontSizes.md,
+	lineHeight: 1.6,
+	color: vars.colors.gray050,
+	fontWeight: 700,
+});
+
+export const buttonRemove = style({
+	display: "flex",
+	fontWeight: 700,
+	lineHeight: 1.6,
+	fontSize: vars.fontSizes.md,
+	backgroundColor: "transparent",
+	color: vars.colors.green500,
+	justifyContent: "left",
+	borderStyle: "none",
+	cursor: "pointer",
+
+	":hover": {
+		color: vars.colors.green300,
+	}
 });
 
 export const imageContainer = style({
@@ -78,3 +114,34 @@ globalStyle(`${imageContainer} img`, {
 	objectFit: "cover",
 });
 
+export const footerContainer = style({
+	display: "flex", 
+	flexDirection: "column",
+});
+
+globalStyle(`${footerContainer} div`, {
+	display: "flex",
+	flexDirection: "row",
+	lineHeight: 1.6,
+	justifyContent: "space-between",
+});
+
+export const finishButton = style({
+	marginTop: "3rem",
+	display: "flex",
+	justifyContent: "center",
+	alignContent: "center",
+	paddingTop: "1.25rem",
+	paddingBottom: "1.25rem",
+	background: vars.colors.green500,
+	fontSize: vars.fontSizes.md,
+	fontWeight: 700,
+	color: vars.colors.white,
+	cursor: "pointer",
+	border: "0 none",
+	borderRadius: "8px",
+
+	":hover": {
+		background: vars.colors.green300,
+	}
+});

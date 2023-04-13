@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { CartProvider } from "use-shopping-cart";
 import * as config from "../config";
-import { Layout } from "./layout";
+import { LayoutContainer } from "@/components/LayoutContainer";
 
 type CartProps = {
     children: ReactNode;
@@ -24,9 +24,9 @@ export const Cart = ({children}: CartProps) => {
 				stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string} 
 				shouldPersist={false} 
 			>
-				<Layout>
+				<LayoutContainer>
 					{children}
-				</Layout>
+				</LayoutContainer>
 			</CartProvider>
 		);
 	}
