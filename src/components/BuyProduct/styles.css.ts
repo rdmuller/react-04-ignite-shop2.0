@@ -57,24 +57,3 @@ globalStyle(`${productDetails} p`, {
 	lineHeight: "1.6rem",
 	color: vars.colors.gray300
 });
-
-globalStyle(`${productDetails} button`, {
-	marginTop: "auto",
-	backgroundColor: vars.colors.green500,
-	border: 0,
-	fontSize: vars.fontSizes.md,
-	color: vars.colors.white, 
-	borderRadius: 8,
-	padding: "1.25rem",
-	cursor: "pointer",
-	fontWeight: "bold",
-});
-
-globalStyle(`${productDetails} button:disabled`, {
-	opacity: 0.6,
-	cursor: "not-allowed",
-});
-
-globalStyle(`${productDetails} button:not(:disabled):hover`, {
-	backgroundColor: vars.colors.green300
-});

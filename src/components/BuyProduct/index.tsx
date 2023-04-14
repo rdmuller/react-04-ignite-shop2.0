@@ -4,6 +4,7 @@ import { Cart } from "@/components/Cart";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useShoppingCart } from "use-shopping-cart";
+import { GreenButton } from "../GreenButton";
 import * as styles from "./styles.css";
 
 export interface BuyProductProps {
@@ -45,7 +46,7 @@ export function BuyProduct ({ product }: BuyProductProps) {
 					<h1>{product.name}</h1>
 					<span>{product.price_formatted}</span>
 					<p>{product.description}</p>
-					<button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>Colocar na sacola</button>
+					<GreenButton disabled={isCreatingCheckoutSession} handleClick={handleBuyProduct}>Colocar na sacola</GreenButton>
 				</div>
 			</main>
 		); 

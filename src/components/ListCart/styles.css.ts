@@ -119,29 +119,13 @@ export const footerContainer = style({
 	flexDirection: "column",
 });
 
-globalStyle(`${footerContainer} div`, {
+export const footerContainerTotals = style({
+	marginBottom: "3.5rem"
+});
+
+globalStyle(`${footerContainerTotals} div`, {
 	display: "flex",
 	flexDirection: "row",
 	lineHeight: 1.6,
 	justifyContent: "space-between",
-});
-
-export const finishButton = style({
-	marginTop: "3rem",
-	display: "flex",
-	justifyContent: "center",
-	alignContent: "center",
-	paddingTop: "1.25rem",
-	paddingBottom: "1.25rem",
-	background: vars.colors.green500,
-	fontSize: vars.fontSizes.md,
-	fontWeight: 700,
-	color: vars.colors.white,
-	cursor: "pointer",
-	border: "0 none",
-	borderRadius: "8px",
-
-	":hover": {
-		background: vars.colors.green300,
-	}
 });

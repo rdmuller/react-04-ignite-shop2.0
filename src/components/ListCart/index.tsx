@@ -4,6 +4,7 @@ import * as styles from "./styles.css";
 import { X } from "@phosphor-icons/react";
 import { useShoppingCart } from "use-shopping-cart";
 import Image from "next/image";
+import { GreenButton } from "../GreenButton";
 
 export function ListCart() {
 	const { cartCount, cartDetails, handleCloseCart, formattedTotalPrice } = useShoppingCart();
@@ -28,17 +29,19 @@ export function ListCart() {
 				)}
 			</div>
 			<div className={styles.footerContainer}>
-				<div>
-					<span>Quantidade</span>
-					<span>{cartCount} itens</span>
-				</div>
-				
-				<div>
-					<span>Valor total</span>
-					<span>{formattedTotalPrice}</span>
+				<div className={styles.footerContainerTotals}>
+					<div>
+						<span>Quantidade</span>
+						<span>{cartCount} itens</span>
+					</div>
+					
+					<div>
+						<span>Valor total</span>
+						<span><strong>{formattedTotalPrice}</strong></span>
+					</div>
 				</div>
 
-				<button className={styles.finishButton}>Finalizar compra</button>
+				<GreenButton handleClick={() => alert("teste")}>Finalizar compra</GreenButton>
 			</div>
 		</div>
 	);
