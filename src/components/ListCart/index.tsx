@@ -5,87 +5,107 @@ import { X } from "@phosphor-icons/react";
 import { useShoppingCart } from "use-shopping-cart";
 import Image from "next/image";
 import { GreenButton } from "../GreenButton";
+import { Product } from "use-shopping-cart/core";
+import { FormEvent, useEffect, useState } from "react";
+
+type ProductCartProps = {
+	product: Product;
+}
 
 export function ListCart() {
 	const { cartCount, cartDetails, handleCloseCart, formattedTotalPrice } = useShoppingCart();
+	const [isFinishing, setIsFinishing] = useState(false);
+	const [cartIsEmpty, setCartIsEmpty] = useState(true);
+	const productCart = Object.values(cartDetails ?? {});
 
-	console.log(JSON.stringify(cartDetails));
+	useEffect(() => {
+		setCartIsEmpty(!cartCount);
+	}, [cartCount]);
+
+	async function handleCheckout(event:FormEvent) {
+		event.preventDefault();
+		setIsFinishing(true);
+
+		try {
+			const response = await fetch("/api/checkout", {
+				method: "POST",
+				mode: "cors",
+				cache: "no-cache",
+				credentials: "same-origin",
+				headers: {
+					"content-type": "application/json",
+				},
+				redirect: "follow",
+				referrerPolicy: "no-referrer",
+				body: JSON.stringify(cartDetails),
+			}).then(res => res.json());
+
+			console.log(JSON.stringify(cartDetails));
+			console.log(response);
+
+			setIsFinishing(false);
+		} catch (err) {
+			alert("Erro finalizando compra");
+			throw err.message;
+		}
+
+		//const response = await 
+		return 0;
+	}
 
 	return (
-		<div className={styles.listCartContainer}>
-			<div>
-				<button className={styles.closeButton} onClick={() => handleCloseCart()}>
-					<X size={24} />
-				</button>
-				<h1>Sacola de compras</h1>
-				{cartCount && cartCount > 0 ? (
-					<>
-						{Object.values(cartDetails ?? {}).map((item) => (
-							<ProductCart key={item.id} product={item} />
-						))}
-					</>
-				) : (
-					<p>Sem produtos</p>
-				)}
-			</div>
-			<div className={styles.footerContainer}>
-				<div className={styles.footerContainerTotals}>
-					<div>
-						<span>Quantidade</span>
-						<span>{cartCount} itens</span>
-					</div>
-					
-					<div>
-						<span>Valor total</span>
-						<span><strong>{formattedTotalPrice}</strong></span>
-					</div>
+		<form onSubmit={handleCheckout}>
+			<div className={styles.listCartContainer}>
+				<div>
+					<button className={styles.closeButton} onClick={() => handleCloseCart()}>
+						<X size={24} />
+					</button>
+					<h1>Sacola de compras</h1>
+					{cartCount && cartCount > 0 ? (
+						<>
+							{productCart.map((item) => (
+								<ProductCart key={item.id} product={item} />
+							))}
+						</>
+					) : (
+						<p>Sem produtos</p>
+					)}
 				</div>
+				<div className={styles.footerContainer}>
+					<div className={styles.footerContainerTotals}>
+						<div>
+							<span>Quantidade</span>
+							<span className={styles.quantity}>{cartCount} itens</span>
+						</div>
+					
+						<div>
+							<span className={styles.valueLabel}>Valor total</span>
+							<span className={styles.value}><strong>{formattedTotalPrice}</strong></span>
+						</div>
+					</div>
 
-				<GreenButton handleClick={() => alert("teste")}>Finalizar compra</GreenButton>
+					<GreenButton type="submit" disabled={cartIsEmpty || isFinishing}>Finalizar compra</GreenButton>
+				</div>
 			</div>
-		</div>
+		</form>
 	);
 }
 
-type ProductCartProps = {
-	product: {
-		id: string;
-		name: string;
-		formattedValue: string;
-		image: string;
-	}
-}
-
 function ProductCart({ product }: ProductCartProps) {
+	const { removeItem } = useShoppingCart();
+
 	return (
 		<div className={styles.productContainer}>
 			<div className={styles.imageContainer}>
-				<Image src={product.image} alt="" width={94} height={94} />
+				<Image src={product.image!} alt="" width={94} height={94} />
 			</div>
 			<div className={styles.productDetailsContainer}>
 				<div>
 					<p>{product.name}</p>
 					<span>{product.formattedValue}</span>
 				</div>
-				<button className={styles.buttonRemove}>Remover</button>
+				<button className={styles.buttonRemove} onClick={() => removeItem(product.id)}>Remover</button>
 			</div>
 		</div>
 	);
 }
-
-
-/*
-{"id":"prod_NJoXS7odpoe7Ss",
-"name":"Maratona explorer 2.0",
-"image":"https://files.stripe.com/links/MDB8YWNjdF8xTVpBbmVEVXJadXR6T2dHfGZsX3Rlc3RfNWp1czBuakRlbDRzNHR2SlF4VURUYTNX00QtIak2Cd",
-"currency":"BRL",
-"price":9090,
-"price_formatted":"R$ 90,90",
-"description":"Todavia, a hegemonia do ambiente político talvez venha a ressaltar a relatividade do fluxo de informações.","defaultPriceId":"price_1MZAujDUrZutzOgGkGnrUpvp",
-"quantity":1,
-"value":9090,
-"price_data":{},
-"product_data":{},
-"formattedValue":"R$ 90,90",
-"formattedPrice":"R$ 90,90"}
-*/

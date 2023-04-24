@@ -12,5 +12,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "bfe810a2-740c-4d75-ae17-b3bb142df312",
+    "colId": "61f66593-8661-4ca2-9cf2-1469ca499a8b",
+    "containerId": "",
+    "name": "checkout",
+    "url": "http://localhost:3000/api/checkout",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-04-22T09:59:05.382Z",
+    "modified": "2023-04-22T09:59:23.553Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

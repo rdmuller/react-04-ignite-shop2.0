@@ -128,4 +128,19 @@ globalStyle(`${footerContainerTotals} div`, {
 	flexDirection: "row",
 	lineHeight: 1.6,
 	justifyContent: "space-between",
+	color: vars.colors.gray050,
+});
+
+export const quantity = style({
+	fontSize: vars.fontSizes.md,
+});
+
+export const valueLabel = style({
+	fontSize: vars.fontSizes.md,
+	fontWeight: 700,
+});
+
+export const value = style({
+	fontSize: vars.fontSizes.xl,
+	fontWeight: 700,
 });

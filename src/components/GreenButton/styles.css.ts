@@ -12,10 +12,10 @@ export const greenButton = style({
 	cursor: "pointer",
 	fontWeight: "bold",  
     
-    ":disabled": {
-        opacity: 0.6,
-        cursor: "not-allowed",    
-    }
+	":disabled": {
+		opacity: 0.6,
+		cursor: "not-allowed",    
+	}
 });
 
 globalStyle(`${greenButton}:not(:disabled):hover`, {

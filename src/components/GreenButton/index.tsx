@@ -4,12 +4,13 @@ import * as styles from "./styles.css";
 interface GreenButtonProps {
     children: ReactNode;
 	disabled?: boolean;
-    handleClick: ()  => void;
+	type?: "button" | "submit";
+    handleClick?: ()  => void;
 }
 
-export function GreenButton({ children, disabled, handleClick }: GreenButtonProps) {
+export function GreenButton({ type="button", children, disabled, handleClick }: GreenButtonProps) {
 	return (
-		<button className={styles.greenButton} onClick={handleClick} disabled={disabled}>
+		<button className={styles.greenButton} onClick={handleClick} disabled={disabled} type={type}>
 			{children}
 		</button>
 	);
