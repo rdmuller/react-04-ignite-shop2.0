@@ -27,29 +27,29 @@ export function ListCart() {
 		setIsFinishing(true);
 
 		try {
+			console.log(JSON.stringify(cartDetails));
+
 			const response = await fetch("/api/checkout", {
 				method: "POST",
 				mode: "cors",
 				cache: "no-cache",
 				credentials: "same-origin",
-				headers: {
-					"content-type": "application/json",
-				},
+				/*headers: {
+					"Content-Type": "application/json",
+				},*/
 				redirect: "follow",
 				referrerPolicy: "no-referrer",
-				body: JSON.stringify(cartDetails),
+				body: "testando essa bosta", //JSON.stringify(cartDetails || {}),
 			}).then(res => res.json());
 
-			console.log(JSON.stringify(cartDetails));
 			console.log(response);
 
-			setIsFinishing(false);
-		} catch (err) {
-			alert("Erro finalizando compra");
-			throw err.message;
+		} catch (err) {			
+			alert(`Erro finalizando compra. ${err.message}`);
 		}
 
-		//const response = await 
+		setIsFinishing(false);
+		
 		return 0;
 	}
 
@@ -109,3 +109,8 @@ function ProductCart({ product }: ProductCartProps) {
 		</div>
 	);
 }
+
+
+
+// https://github.com/brunomestanza/ignite-react/blob/main/ignite-shop/src/components/Header/index.tsx
+// https://github.com/brunomestanza/ignite-react/blob/main/ignite-shop/src/pages/api/checkout.ts
