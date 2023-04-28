@@ -34,12 +34,12 @@ export function ListCart() {
 				mode: "cors",
 				cache: "no-cache",
 				credentials: "same-origin",
-				/*headers: {
+				headers: {
 					"Content-Type": "application/json",
-				},*/
+				},
 				redirect: "follow",
 				referrerPolicy: "no-referrer",
-				body: "testando essa bosta", //JSON.stringify(cartDetails || {}),
+				body: JSON.stringify(cartDetails || {}),
 			}).then(res => res.json());
 
 			console.log(response);

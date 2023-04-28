@@ -1,29 +1,32 @@
 import { formatLineItems } from "use-shopping-cart/utilities";
 import { stripe } from "@/lib/stripe";
-import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: NextRequest) {
+	const body = await req.json();
 
 	console.log("executando POST ================");
-	//const line_items = formatLineItems(req.body as any);
+	const line_items = await formatLineItems(body as any);
 	console.log("body ========================");
 	console.log(req.body);
-	console.log("========================");
+	console.log("=============================");
+	console.log(line_items);
+	console.log("=============================");
+	console.log(JSON.stringify(line_items));
 
 	const success_url = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`;
 	const cancel_url = `${process.env.NEXT_URL}/`;
 
 
-	/*const checkoutSession = await stripe.checkout.sessions.create({
+	const checkoutSession = await stripe.checkout.sessions.create({
 		success_url: success_url,
 		cancel_url: cancel_url,
 		mode: "payment",
 		payment_method_types: ["card"],
 		line_items,
 	});
-*/
+
 	return NextResponse.json(
 		{
 			success: true,
