@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-04-22T09:59:05.382Z",
-    "modified": "2023-04-27T21:44:30.378Z",
+    "modified": "2023-04-29T11:23:57.560Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"meuteste\": \"aaa\"\n}",
+      "raw": "[\n  {\n    \"price\":\"price_1MZAujDUrZutzOgGkGnrUpvp\",\n    \"quantity\":1\n  }\n]",
       "form": []
     },
     "tests": []

@@ -12,6 +12,11 @@ type ProductCartProps = {
 	product: Product;
 }
 
+type FormattedCartDeatils = {
+	quantity: number;
+	price: string;
+}
+
 export function ListCart() {
 	const { cartCount, cartDetails, handleCloseCart, formattedTotalPrice } = useShoppingCart();
 	const [isFinishing, setIsFinishing] = useState(false);
@@ -27,8 +32,13 @@ export function ListCart() {
 		setIsFinishing(true);
 
 		try {
-			console.log(JSON.stringify(cartDetails));
-
+			const formatted_data: FormattedCartDeatils[] = productCart.map(item => {
+				return {
+					price: item.defaultPriceId,
+					quantity: item.quantity,	
+				};
+			});
+	
 			const response = await fetch("/api/checkout", {
 				method: "POST",
 				mode: "cors",
@@ -39,11 +49,15 @@ export function ListCart() {
 				},
 				redirect: "follow",
 				referrerPolicy: "no-referrer",
-				body: JSON.stringify(cartDetails || {}),
-			}).then(res => res.json());
+				body: JSON.stringify(formatted_data || {}),
+			});
 
-			console.log(response);
-
+			if (response.status === 201) {
+				const { checkoutUrl } = await response.json();
+				window.location = checkoutUrl;
+			} else {
+				alert("Erro redirecionando para o pagamento");
+			}
 		} catch (err) {			
 			alert(`Erro finalizando compra. ${err.message}`);
 		}
@@ -109,8 +123,3 @@ function ProductCart({ product }: ProductCartProps) {
 		</div>
 	);
 }
-
-
-
-// https://github.com/brunomestanza/ignite-react/blob/main/ignite-shop/src/components/Header/index.tsx
-// https://github.com/brunomestanza/ignite-react/blob/main/ignite-shop/src/pages/api/checkout.ts
