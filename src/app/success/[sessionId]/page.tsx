@@ -19,11 +19,19 @@ export default async function Success({ params }: SuccessParams) {
 	console.log(JSON.stringify(session.line_items?.data[0]));
 
 	const products = session.line_items?.data.map(line_item => line_item.id) || [""];
+	const quantity = session.line_items?.data.reduce((acu, line_item) => acu + line_item.quantity!, 0);
 
 	return (
-		<PurchaseSummary customerName={customerName} totalQty={0} urls={products} />
+		<div>
+			<span>Uhuul {customerName}, sua compra de {quantity} camisetas já </span>
+			<span>está a caminho da sua casa. </span>
+		</div>
 	);
 }
+
+//<PurchaseSummary customerName={customerName} totalQty={0} urls={products} />
+
+
 /*
 
 {"object":"list",
