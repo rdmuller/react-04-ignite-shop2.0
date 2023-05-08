@@ -16,15 +16,32 @@ export default async function Success({ params }: SuccessParams) {
 
 	const customerName = session.customer_details?.name ? session.customer_details?.name : "";
 
-	console.log(JSON.stringify(session.line_items?.data[0]));
+    async function getProductUrl(productId: string) {
+        const product = await stripe.products.retrieve(productId);
+        return product;
+    }
 
-	const products = session.line_items?.data.map(line_item => line_item.id) || [""];
+	const products = session.line_items!.data.map(line_item => {
+        const productId = line_item.price!.product;
+		const product = await getProductUrl(productId);
+
+		return JSON.stringify(product);
+		//return line_item.price!.product || [""];
+	});
 	const quantity = session.line_items?.data.reduce((acu, line_item) => acu + line_item.quantity!, 0);
 
 	return (
 		<div>
 			<span>Uhuul {customerName}, sua compra de {quantity} camisetas já </span>
 			<span>está a caminho da sua casa. </span>
+			{products.map(item => {
+				return (
+					<p key="">
+                        {item}
+                        <p>&nbsp;</p>
+                    </p>
+				);
+			})}
 		</div>
 	);
 }

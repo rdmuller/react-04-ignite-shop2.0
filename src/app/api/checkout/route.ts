@@ -1,4 +1,3 @@
-import { formatLineItems } from "use-shopping-cart/utilities";
 import { stripe } from "@/lib/stripe";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -6,10 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
 	const cart = await req.json();
 
-	console.log("executando POST ================");
+	//console.log("executando POST ================");
 	//const line_items = await formatLineItems(body as any);
 	//console.log("body ========================");
-	console.log(cart);
+	//console.log(cart);
 	//console.log("=============================");
 	//console.log(line_items);
 
